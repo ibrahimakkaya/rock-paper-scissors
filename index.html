@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>TOP Rock-Paper-Scissors</h1>
+    <script>
+      function computerPlay() {
+        let options = ["rock", "paper", "scissor"];
+        let choice = Math.floor(Math.random() * (2 - 0 + 1));
+        return options[choice];
+      }
+
+      function winnerCalculate(playerSelection, computerSelection) {
+        playerSelection = playerSelection.toLowerCase();
+        if (playerSelection === computerSelection) {
+          return "DRAW!";
+        } else if (
+          playerSelection === "paper" &&
+          computerSelection === "rock"
+        ) {
+          return "You Won!, Paper beats Rock";
+        } else if (
+          computerSelection === "paper" &&
+          playerSelection === "rock"
+        ) {
+          return "You Lose!, Paper beats Rock";
+        } else if (
+          playerSelection === "scissor" &&
+          computerSelection === "paper"
+        ) {
+          return "You Won!, Scissor beats Paper";
+        } else if (
+          playerSelection === "paper" &&
+          computerSelection === "scissor"
+        ) {
+          return "You Lose!, Scissor beats Paper";
+        } else if (
+          playerSelection === "rock" &&
+          computerSelection === "scissor"
+        ) {
+          return "You Won, Rock beats Scissor";
+        } else if (
+          playerSelection === "scissor" &&
+          computerSelection === "rock"
+        ) {
+          return "You Won, Rock beats Scissor";
+        } else {
+          return "Please enter correct value!";
+        }
+      }
+
+      function game() {
+        for (let i = 0; i < 5; i++) {
+          console.log(`Round ${i + 1}:`);
+          console.log(playRound());
+        }
+      }
+
+      function playRound() {
+        let playerChoice = window.prompt("Enter you choice");
+        return winnerCalculate(playerChoice, computerPlay());
+      }
+
+      game();
+    </script>
+  </body>
+</html>
