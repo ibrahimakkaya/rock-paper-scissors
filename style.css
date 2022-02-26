@@ -1,19 +1,82 @@
+* {
+  font-family: "Courier New", Courier, monospace;
+}
+
+body {
+  background-color: #dde4e8;
+}
+
 h1 {
-  display: inline-block;
-  padding: 4px;
+  text-align: center;
+}
+
+.game {
+  position: absolute;
+  max-width: 500px;
+  min-width: 500px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffc97a;
+  border: 1px solid #301c44;
+  padding: 10px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.panel {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+}
+
+.button,
+.button-comp {
+  padding: 15px 25px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #69b476;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 2px #999;
+}
+
+.button:hover {
+  background-color: #3e8e41;
+}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 20px #666;
+  transform: translateY(4px);
+}
+
+.result {
+  display: flex;
+  background-color: #877aff;
+  width: 200px;
+  height: 50px;
+  margin: 30px auto;
+  padding: 10px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
   color: aliceblue;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 0, 0, 1) 0%,
-    rgba(255, 154, 0, 1) 10%,
-    rgba(208, 222, 33, 1) 20%,
-    rgba(79, 220, 74, 1) 30%,
-    rgba(63, 218, 216, 1) 40%,
-    rgba(47, 201, 226, 1) 50%,
-    rgba(28, 127, 238, 1) 60%,
-    rgba(95, 21, 242, 1) 70%,
-    rgba(186, 12, 248, 1) 80%,
-    rgba(251, 7, 217, 1) 90%,
-    rgba(255, 0, 0, 1) 100%
-  );
+  border-radius: 12px;
+  box-shadow: rgba(45, 77, 114, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  cursor: not-allowed;
+}
+
+.button-comp {
+  cursor: not-allowed;
+  background-color: #ef8a6e;
+}
+
+.button-comp-win {
+  background-color: aqua;
 }

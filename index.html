@@ -8,11 +8,23 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>TOP Rock-Paper-Scissors</h1>
+    <div class="game">
+      <h1>YOU</h1>
+      <div class="panel">
+        <div class="button">Rock</div>
+        <div class="button">Paper</div>
+        <div class="button">Scissor</div>
+      </div>
+      <h1>COMPUTER</h1>
+      <div class="panel">
+        <div class="button-comp">Rock</div>
+      </div>
+    </div>
     <script>
       function computerPlay() {
         let options = ["rock", "paper", "scissor"];
         let choice = Math.floor(Math.random() * (2 - 0 + 1));
+        computer.textContent = options[choice];
         return options[choice];
       }
 
@@ -24,50 +36,79 @@
           playerSelection === "paper" &&
           computerSelection === "rock"
         ) {
+          playerScore += 1;
           return "You Won!, Paper beats Rock";
         } else if (
           computerSelection === "paper" &&
           playerSelection === "rock"
         ) {
+          computerScore += 1;
           return "You Lose!, Paper beats Rock";
         } else if (
           playerSelection === "scissor" &&
           computerSelection === "paper"
         ) {
+          playerScore += 1;
           return "You Won!, Scissor beats Paper";
         } else if (
           playerSelection === "paper" &&
           computerSelection === "scissor"
         ) {
+          computerScore += 1;
           return "You Lose!, Scissor beats Paper";
         } else if (
           playerSelection === "rock" &&
           computerSelection === "scissor"
         ) {
-          return "You Won, Rock beats Scissor";
+          playerScore += 1;
+          return "You Won!, Rock beats Scissor";
         } else if (
           playerSelection === "scissor" &&
           computerSelection === "rock"
         ) {
-          return "You Won, Rock beats Scissor";
+          playerScore += 1;
+          return "You Won!, Rock beats Scissor";
         } else {
           return "Please enter correct value!";
         }
       }
 
-      function game() {
-        for (let i = 0; i < 5; i++) {
-          console.log(`Round ${i + 1}:`);
-          console.log(playRound());
-        }
-      }
+      let playerScore = 0;
+      let computerScore = 0;
 
-      function playRound() {
-        let playerChoice = window.prompt("Enter you choice");
-        return winnerCalculate(playerChoice, computerPlay());
-      }
+      const buttons = document.querySelectorAll(".button");
 
-      game();
+      const game = document.querySelector(".game");
+      const result = document.createElement("div");
+      const computer = document.querySelector(".button-comp");
+      game.appendChild(result);
+      result.classList.add("result");
+
+      result.textContent = "0 - 0";
+      buttons.forEach((item) => {
+        item.addEventListener("click", () => {
+          const playerChoice = item.textContent;
+
+          //Put game score to score table
+          result.textContent =
+            winnerCalculate(playerChoice, computerPlay()) +
+            ` ${playerScore} - ${computerScore}`;
+          //Calculate game result
+          if (playerScore == 5) {
+            result.textContent = "GAME WINNER : YOU ARE! CONGRATZ";
+            computerScore = 0;
+            playerScore = 0;
+          } else if (computerScore == 5) {
+            result.textContent = "GAME WINNER : COMPUTER! WHAT A LOSER";
+            playerScore = 0;
+            computerScore = 0;
+          } else {
+            if (result.textContent.slice(0, 7) == "You Won") {
+            } else if (result.textContent.slice(0, 8) == "You Lose") {
+            }
+          }
+        });
+      });
     </script>
   </body>
 </html>
